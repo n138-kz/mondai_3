@@ -54,6 +54,13 @@
 	</script>
 	<script>
 		window.addEventListener('DOMContentLoaded', (e)=>{
+			let g_id_signin = document.createElement('div');
+			g_id_signin.classList.add('div_button');
+			g_id_signin.classList.add('g_id_signin');
+			g_id_signin.dataset.type = 'standard';
+			g_id_signin.dataset.logo_alignment = 'left';
+			document.querySelector('body').appendChild(g_id_signin);
+
 			let g_id_onload = document.createElement('div');
 			g_id_onload.classList.add('div_button');
 			g_id_onload.id = 'g_id_onload';
@@ -61,13 +68,6 @@
 			g_id_onload.dataset.login_uri = 'https://n138-kz.github.io';
 			g_id_onload.dataset.callback = 'onSignIn';
 			document.querySelector('body').appendChild(g_id_onload);
-
-			let g_id_signin = document.createElement('div');
-			g_id_signin.classList.add('div_button');
-			g_id_signin.classList.add('g_id_signin');
-			g_id_signin.dataset.type = 'standard';
-			g_id_signin.dataset.logo_alignment = 'left';
-			document.querySelector('body').appendChild(g_id_signin);
 
 			let github_link_block = document.createElement('div');
 			github_link_block.classList.add('div_button');
