@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
+	<script src="https://www.google.com/recaptcha/api.js?render=6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA"></script>
+	<style>
+		:root {
+			--default-font-size: 16pt;
+			--default-margin-padding-size: 0;
+			--default-background-color: #F0FFFFFF;
+			--default-text-color: #000000FF;
+		}
+		html, body {
+			margin: var(--default-margin-padding-size);
+			padding: var(--default-margin-padding-size);
+			background-color: var(--default-background-color);
+			color: var(--default-text-color);
+			font-size: var(--default-font-size);
+		}
+		body {
+			max-width: 520px;
+			margin: 0 auto;
+			width: 50%;
+			text-align: center;
+		}
+	</style>
+	<style>
+		div.div_button {
+			padding: 10px 15px;
+		}
+		a {
+			text-decoration: none;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+	</style>
+	<script>
+		window.addEventListener('DOMContentLoaded', (e)=>{
+			const html_top = document.createElement('a');
+			html_top.name='_';
+			document.querySelector('body').prepend(html_top);
+		}, false);
+	</script>
+	<script>
+		window.addEventListener('DOMContentLoaded', (e)=>{
+			let g_id_onload = document.createElement('div');
+			g_id_onload.classList.add('div_button');
+			g_id_onload.id = 'g_id_onload';
+			g_id_onload.dataset.client_id = '784669840257-i0a06p3o6g8k0k1tk26jj09li1q2acud.apps.googleusercontent.com';
+			g_id_onload.dataset.login_uri = 'https://labs.n138.jp';
+			g_id_onload.dataset.callback = 'onSignIn';
+			document.querySelector('body').appendChild(g_id_onload);
+
+			let g_id_signin = document.createElement('div');
+			g_id_signin.classList.add('div_button');
+			g_id_signin.classList.add('g_id_signin');
+			g_id_signin.dataset.type = 'standard';
+			g_id_signin.dataset.logo_alignment = 'left';
+			document.querySelector('body').appendChild(g_id_signin);
+
+			let github_link_block = document.createElement('div');
+			github_link_block.classList.add('div_button');
+			let github_link_a = document.createElement('a');
+			github_link_a.innerText = 'Github';
+			github_link_a.href = 'https://github.com/n138-kz/mondai_3';
+			github_link_a.target = '_blank';
+			github_link_block.appendChild(github_link_a);
+			document.querySelector('body').appendChild(github_link_block);
+		}, false);
+	</script>
+	<script>
+		function onSignIn(params) {
+			console.log(params);
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>
