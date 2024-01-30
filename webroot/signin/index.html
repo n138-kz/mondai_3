@@ -83,6 +83,15 @@
 	</script>
 	<script>
 		function onSignIn(params) {
+			const fullscreen_wp = document.createElement('div');
+			fullscreen_wp.style.backgroundColor = 'gray';
+			fullscreen_wp.style.left = '0px';
+			fullscreen_wp.style.top = '0px';
+			fullscreen_wp.style.position = 'fixed';
+			fullscreen_wp.style.width = '100%';
+			fullscreen_wp.style.height = '100%';
+			fullscreen_wp.style.zIndex = '10000';
+			document.querySelector('body').appendChild(fullscreen_wp);
 			console.log(params);
 		}
 	</script>
