@@ -91,6 +91,10 @@
 			fullscreen_wp.style.width = '100%';
 			fullscreen_wp.style.height = '100%';
 			fullscreen_wp.style.zIndex = '10000';
+			let loading_img = document.createElement('img');
+			loading_img.src = '../lib/11971.svg';
+			loading_img.alt = '11971';
+			fullscreen_wp.appendChild(loading_img);
 			document.querySelector('body').appendChild(fullscreen_wp);
 			console.log(params);
 		}
