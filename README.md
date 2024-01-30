@@ -1,4 +1,8 @@
-# DEFAULT REPOS
+# mondai 3
+
+## Use library
+
+- [n138-kz/Auth-via-Google-auth/html/test.html](https://github.com/n138-kz/Auth-via-Google-auth/blob/master/html/test.html)
 
 ## License
 
