@@ -90,7 +90,8 @@
 	</script>
 	<script>
 		function onSignIn(params) {
-			let fullscreen_wp = document.querySelectorAll('.fullscreen_wp')
+			let fullscreen_wp;
+			fullscreen_wp = document.querySelectorAll('.fullscreen_wp');
 			Array.prototype.forEach.call(fullscreen_wp, (e)=>{ e.remove(); });
 			fullscreen_wp = document.createElement('div');
 			fullscreen_wp.style.backgroundColor = 'gray';
