@@ -114,6 +114,47 @@
 			fullscreen_wp.appendChild(loading_img);
 			document.querySelector('body').appendChild(fullscreen_wp);
 			console.log([params, JSON.stringify(params)]);
+
+			try {
+				let xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = () => {
+					if ( xhr.readyState === 4 && xhr.status === 200 ) {
+						let responseText = xhr.responseText;
+						let response = JSON.parse(responseText);
+						console.log(
+							response.user.google.userid,
+							response.user.google.email,
+							response.user.google.name,
+							response.user.google.icon,
+							response.user.google.session.iat,
+							response.user.google.session.exp,
+						);
+					} else if ( xhr.readyState === 4 && xhr.status >= 500 ) {
+						throw new Error(`Error has occured. error-code=${xhr.status}(Server-error).`);
+					} else if ( xhr.readyState === 4 && xhr.status >= 400 ) {
+						throw new Error(`Error has occured. error-code=${xhr.status}(Client-error).`);
+					} else {
+						console.debug( [
+							xhr.responseText,
+							xhr.readyState,
+							xhr.status,
+						] );
+					}
+				}
+				xhr.open( 'POST', 'https://authz.n138.jp:81/google/' );
+				xhr.setRequestHeader( 'content-type', 'application/x-www-form-urlencoded;charset=UTF-8' );
+				xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) + '&credential='+params.credential + '&clientId='+params.clientId );
+				
+			} catch (excep) {
+				console.error(excep.message);
+				var result_mesg;
+				result_mesg = document.createElement('p');
+				result_mesg.innerText = excep.message;
+				document.querySelectorAll('.g_id_signin').item( (document.querySelectorAll('.g_id_signin').length-1) ).after(result_mesg);
+			} finally {
+				fullscreen_wp = document.querySelectorAll('.fullscreen_wp');
+				Array.prototype.forEach.call(fullscreen_wp, (e)=>{ e.remove(); });
+			}
 		}
 	</script>
 </head>
