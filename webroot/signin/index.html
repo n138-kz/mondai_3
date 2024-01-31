@@ -91,11 +91,7 @@
 	<script>
 		function onSignIn(params) {
 			let fullscreen_wp = document.querySelectorAll('.fullscreen_wp')
-			/*
-			 * https://blog.sushi.money/entry/2017/04/19/114028
-			 * https://blog.sushi.money/entry/2017/04/19/114028
-			*/
-			[].map.call( fullscreen_wp, (e) => {e.innerHTML = '';} );
+			Array.prototype.forEach.call(fullscreen_wp, (e)=>{ e.innerHTML = ''; });
 			fullscreen_wp = document.createElement('div');
 			fullscreen_wp.style.backgroundColor = 'gray';
 			fullscreen_wp.style.left = '0px';
