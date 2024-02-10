@@ -72,7 +72,7 @@
 		function checkupdate_self() {
 			sha256(document.querySelector(':root').innerHTML).then(hash => {
 				console.debug([hash, sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ]);
-				if ( hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ) {
+				if ( hash != sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ) {
 					location.reload();
 					return true;
 				} else {
