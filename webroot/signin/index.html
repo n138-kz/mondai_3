@@ -79,6 +79,21 @@
 					return false;
 				}
 			});
+			try {
+				let xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = () => {
+					if ( xhr.readyState === 4 && xhr.status === 200 ) {
+						let responseText = xhr.responseText;
+						let response = JSON.parse(responseText);
+						console.log(response);
+						console.log(response.sha);
+					}
+				}
+				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/commits' );
+				xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
+			} catch (excep) {
+				console.error(excep.message);
+			}
 		}
 		window.addEventListener('DOMContentLoaded', (e)=>{
 			sha256(document.querySelector(':root').innerHTML).then(hash => {
