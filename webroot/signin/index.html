@@ -92,6 +92,7 @@
 				}
 			})
 			.then(deployLatest_url => {
+				console.log(deployLatest_url);
 				return fetch(deployLatest_url, {
 					method: 'GET',
 				}).then(response => response.json())
