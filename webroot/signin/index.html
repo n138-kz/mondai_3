@@ -91,7 +91,7 @@
 						console.log(response.sha);
 					}
 				}
-				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/commits' );
+				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/deployments' );
 				xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
 			} catch (excep) {
 				console.error(excep.message);
