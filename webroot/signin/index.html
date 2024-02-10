@@ -90,6 +90,16 @@
 						console.log(response);
 						console.log(response[0].statuses_url);
 
+						let xhr2 = new XMLHttpRequest();
+						xhr2.onreadystatechange = () => {
+							if ( xhr.readyState === 4 && xhr.status === 200 ) {
+								let responseText = xhr.responseText;
+								let response = JSON.parse(responseText);
+								console.log(response[0]);
+							}
+						}
+						xhr.open( 'GET', response[0].statuses_url );
+						xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
 					}
 				}
 				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/deployments' );
