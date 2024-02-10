@@ -70,17 +70,6 @@
 			return Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('')
 		}
 		function checkupdate_self() {
-			sha256(document.querySelector(':root').innerHTML).then(hash => {
-				console.debug([hash, sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ]);
-			});
-			if (false) {
-				if ( hash != sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ) {
-					location.reload();
-					return true;
-				} else {
-					return false;
-				}
-			}
 			try {
 				let xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = () => {
@@ -120,6 +109,7 @@
 				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML', hash );
 			});
 
+			checkupdate_self();
 			setInterval(checkupdate_self, (300 * 1000)); /* 5min */
 		}, false);
 	</script>
