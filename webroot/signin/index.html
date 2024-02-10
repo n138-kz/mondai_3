@@ -123,12 +123,12 @@
 						let response = JSON.parse(responseText);
 						console.log(response);
 						console.log(
-							response.user.google.userid,
-							response.user.google.email,
-							response.user.google.name,
-							response.user.google.icon,
-							response.user.google.session.iat,
-							response.user.google.session.exp,
+							response.user.userid,
+							response.user.email,
+							response.user.name,
+							response.user.icon,
+							responsesession.iat,
+							responsesession.exp,
 						);
 					} else if ( xhr.readyState === 4 && xhr.status >= 500 ) {
 						throw new Error(`Error has occured. error-code=${xhr.status}(Server-error).`);
@@ -137,6 +137,7 @@
 					} else {
 						console.debug( [
 							xhr.responseText,
+							JSON.parse(xhr.responseText),
 							xhr.readyState,
 							xhr.status,
 						] );
