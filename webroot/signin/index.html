@@ -84,11 +84,13 @@
 			try {
 				let xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = () => {
-					if ( xhr.readyState === 4 && xhr.status === 200 ) {
 						let responseText = xhr.responseText;
 						let response = JSON.parse(responseText);
 						console.log(response);
 						console.log(response[0].statuses_url);
+					if ( xhr.readyState === 4 ) {
+						if ( false ) {
+						} else if ( xhr.status === 200 ) {
 
 						let xhr2 = new XMLHttpRequest();
 						xhr2.onreadystatechange = () => {
