@@ -70,6 +70,13 @@
 			return Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('')
 		}
 		function checkupdate_self() {
+			var dom_messages;
+			var dom_messages_outputs;
+			var dom_messages_code;
+			dom_messages = document.createElement('div');
+			dom_messages.style.display = 'flex';
+			dom_messages_outputs = document.createElement('output');
+			dom_messages_code = document.createElement('code');
 			try {
 				let xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = () => {
@@ -80,6 +87,10 @@
 							let response = JSON.parse(responseText);
 							console.log(response);
 							console.log(response[0].statuses_url);
+							dom_messages_code.innerText = excep.message;
+							dom_messages_outputs.appendChild(dom_messages_code);
+							dom_messages.appendChild(dom_messages_outputs);
+							document.querySelectorAll('body').forEach((e,i)=>e.appendChild(dom_messages));
 
 							let xhr2 = new XMLHttpRequest();
 							xhr2.onreadystatechange = () => {
@@ -102,6 +113,10 @@
 				xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
 			} catch (excep) {
 				console.error(excep.message);
+				dom_messages_code.innerText = excep.message;
+				dom_messages_outputs.appendChild(dom_messages_code);
+				dom_messages.appendChild(dom_messages_outputs);
+				document.querySelectorAll('body').forEach((e,i)=>e.appendChild(dom_messages));
 			}
 		}
 		window.addEventListener('DOMContentLoaded', (e)=>{
