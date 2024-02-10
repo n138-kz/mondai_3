@@ -84,8 +84,12 @@
 			})
 			.then(response => response.json())
 			.then(response => {
-				console.log(response);
-				return response[0].statuses_url;
+				if (false) {
+				} else if ( response.status === 200 ) {
+					return response[0].statuses_url;
+				} else if ( response.status >= 400 ) {
+					throw new Error(`[${response.status}]Error has occured. server-message:${response.message} ${response.documentation_url}`);
+				}
 			})
 			.then(deployLatest_url => {
 				return fetch(deployLatest_url, {
@@ -99,7 +103,7 @@
 				return response;
 			})
 			.catch(exception => {
-				console.log(exception);
+				console.error(exception);
 			});
 		}
 		function checkupdate_self() {
