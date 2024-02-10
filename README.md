@@ -2,8 +2,6 @@
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/w/n138-kz/mondai_3)](/../../)
 [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/mondai_3)](/../../)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/n138-kz/mondai_3/Docker-test_dev.yml)](/../../actions)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/n138-kz/mondai_3/Docker-test_prd.yml)](/../../actions)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/n138-kz/mondai_3)](/../../)
 [![GitHub repo file count](https://img.shields.io/github/directory-file-count/n138-kz/mondai_3)](/../../)
 [![GitHub repo size](https://img.shields.io/github/repo-size/n138-kz/mondai_3)](/../../)
