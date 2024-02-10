@@ -74,62 +74,35 @@
 			const digest = await crypto.subtle.digest('SHA-256', uint8)
 			return Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('')
 		}
-		function checkupdate_self() {
+		function getLatestDeployGithub(requestUri) {
 			var dom_messages;
 			var dom_messages_outputs;
 			var dom_messages_code;
-			dom_messages = document.createElement('div');
-			dom_messages.style.display = 'flex';
-			dom_messages_outputs = document.createElement('output');
-			dom_messages_code = document.createElement('code');
-			try {
-				let xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = () => {
-					if ( xhr.readyState === 4 ) {
-						if ( false ) {
-						} else if ( xhr.status === 200 ) {
-							let responseText = xhr.responseText;
-							let response = JSON.parse(responseText);
-							console.log(response);
-							console.log(response[0].statuses_url);
-							dom_messages_code.innerText = response[0].statuses_url;
-							dom_messages_outputs.appendChild(dom_messages_code);
-							dom_messages.appendChild(dom_messages_outputs);
-							document.querySelectorAll('body').forEach((e,i)=>e.appendChild(dom_messages));
-
-							let xhr2 = new XMLHttpRequest();
-							xhr2.onreadystatechange = () => {
-								if ( xhr2.readyState === 4 && xhr2.status === 200 ) {
-									let responseText = xhr2.responseText;
-									let response = JSON.parse(responseText);
-									console.log(response[0]);
-								}
-							}
-							xhr.open( 'GET', response[0].statuses_url );
-							xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
-						} else if ( xhr.status >= 400 ) {
-							let responseText = xhr.responseText;
-							let response = JSON.parse(responseText);
-							throw new Error(`[${xhr.status}]Error has occured. server-message:${response.message} ${response.documentation_url}`);
-						}
-					}
-				}
-				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/deployments' );
-				xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
-			} catch (excep) {
-				console.error(excep.message);
-				dom_messages_code.innerText = excep.message;
-				dom_messages_outputs.appendChild(dom_messages_code);
-				dom_messages.appendChild(dom_messages_outputs);
-				document.querySelectorAll('body').forEach((e,i)=>e.appendChild(dom_messages));
-			}
+			/* fetch */
+			fetch(requestUri, {
+				method: 'GET',
+			})
+			.then(response => response.json())
+			.then(response => {
+				return response[0].statuses_url;
+			})
+			.then(deployLatest_url => {
+				return fetch(deployLatest_url, {
+					method: 'GET',
+				}).then(response => response.json())
+				.then(response => {
+					return response[0];
+				});
+			})
+			.then(response => {
+				return response;
+			});
+		}
 		}
 		window.addEventListener('DOMContentLoaded', (e)=>{
-			sha256(document.querySelector(':root').innerHTML).then(hash => {
-				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML', hash );
-			});
+			sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'github',
+			getLatestDeployGithub('https://api.github.com/repos/n138-kz/mondai_3/deployments') );
 
-			checkupdate_self();
 			setInterval(checkupdate_self, (300 * 1000)); /* 5min */
 		}, false);
 	</script>
