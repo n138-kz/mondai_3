@@ -88,6 +88,8 @@
 						let responseText = xhr.responseText;
 						let response = JSON.parse(responseText);
 						console.log(response);
+						console.log(response[0].statuses_url);
+
 					}
 				}
 				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/deployments' );
