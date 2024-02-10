@@ -87,7 +87,7 @@
 							let response = JSON.parse(responseText);
 							console.log(response);
 							console.log(response[0].statuses_url);
-							dom_messages_code.innerText = excep.message;
+							dom_messages_code.innerText = response[0].statuses_url;
 							dom_messages_outputs.appendChild(dom_messages_code);
 							dom_messages.appendChild(dom_messages_outputs);
 							document.querySelectorAll('body').forEach((e,i)=>e.appendChild(dom_messages));
