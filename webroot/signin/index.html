@@ -84,24 +84,29 @@
 			try {
 				let xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = () => {
-						let responseText = xhr.responseText;
-						let response = JSON.parse(responseText);
-						console.log(response);
-						console.log(response[0].statuses_url);
 					if ( xhr.readyState === 4 ) {
 						if ( false ) {
 						} else if ( xhr.status === 200 ) {
+							let responseText = xhr.responseText;
+							let response = JSON.parse(responseText);
+							console.log(response);
+							console.log(response[0].statuses_url);
 
-						let xhr2 = new XMLHttpRequest();
-						xhr2.onreadystatechange = () => {
-							if ( xhr.readyState === 4 && xhr.status === 200 ) {
-								let responseText = xhr.responseText;
-								let response = JSON.parse(responseText);
-								console.log(response[0]);
+							let xhr2 = new XMLHttpRequest();
+							xhr2.onreadystatechange = () => {
+								if ( xhr2.readyState === 4 && xhr2.status === 200 ) {
+									let responseText = xhr2.responseText;
+									let response = JSON.parse(responseText);
+									console.log(response[0]);
+								}
 							}
+							xhr.open( 'GET', response[0].statuses_url );
+							xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
+						} else if ( xhr.status >= 400 ) {
+							let responseText = xhr.responseText;
+							let response = JSON.parse(responseText);
+							throw new Error(`[${xhr.status}]Error has occured. server-message:${response.message}`);
 						}
-						xhr.open( 'GET', response[0].statuses_url );
-						xhr.send( 'ts='+(Math.floor((new Date()).getTime()/1000)) );
 					}
 				}
 				xhr.open( 'GET', 'https://api.github.com/repos/n138-kz/mondai_3/deployments' );
