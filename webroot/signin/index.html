@@ -98,6 +98,11 @@
 				return response;
 			});
 		}
+		function checkupdate_self() {
+			let latestDeployGithub = getLatestDeployGithub('https://api.github.com/repos/n138-kz/mondai_3/deployments');
+			/*
+			idが違って、stateがsuccessの時ページ再読み込み
+			*/
 		}
 		window.addEventListener('DOMContentLoaded', (e)=>{
 			sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'github',
