@@ -105,7 +105,7 @@
 						} else if ( xhr.status >= 400 ) {
 							let responseText = xhr.responseText;
 							let response = JSON.parse(responseText);
-							throw new Error(`[${xhr.status}]Error has occured. server-message:${response.message}`);
+							throw new Error(`[${xhr.status}]Error has occured. server-message:${response.message} ${response.documentation_url}`);
 						}
 					}
 				}
