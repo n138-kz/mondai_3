@@ -85,7 +85,7 @@
 				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML', hash );
 			});
 
-			setInterval(checkupdate_self, 10000);
+			setInterval(checkupdate_self, (300 * 1000)); /* 5min */
 		}, false);
 	</script>
 	<script>
