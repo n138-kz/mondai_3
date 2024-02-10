@@ -69,18 +69,19 @@
 			const digest = await crypto.subtle.digest('SHA-256', uint8)
 			return Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('')
 		}
+		function checkupdate_self() {
+			sha256(document.querySelector(':root').innerHTML).then(hash => {
+				if ( hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ) {
+					location.reload();
+				}
+			});
+		}
 		window.addEventListener('DOMContentLoaded', (e)=>{
 			sha256(document.querySelector(':root').innerHTML).then(hash => {
 				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML', hash );
 			});
 
-			setInterval(()=>{
-				sha256(document.querySelector(':root').innerHTML).then(hash => {
-					if ( hash == sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'rawHTML' ) ) {
-						location.reload();
-					}
-				});
-			},10000);
+			setInterval(checkupdate_self, 10000);
 		}, false);
 	</script>
 	<script>
