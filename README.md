@@ -1,4 +1,4 @@
-# mondai 3
+# [mondai 3](https://github.com/n138-kz/mondai_3)
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/w/n138-kz/mondai_3)](/../../commits)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/n138-kz/mondai_3)](/../../commits)
